@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meal-frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: meal-frontend
+  template:
+    metadata:
+      labels:
+        app: meal-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: meal-frontend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://meal-backend-service:5000"
