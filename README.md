@@ -116,36 +116,36 @@ meal-planner-app/
 ## ☸️ Minikube (Local Kubernetes)
 
 bash
-Start Minikube
+> Start Minikube:
 minikube start
 
-Enable Docker inside Minikube
+> Enable Docker inside Minikube:
 eval $(minikube docker-env)
 
-Build images
+> Build images:
 docker build -t meal-backend ./backend
 docker build -t meal-frontend ./frontend
 
-Deploy to Kubernetes
+> Deploy to Kubernetes:
 kubectl apply -f k8s/
 
-Access application
+> Access application:
 minikube service meal-frontend-service
 
-🔗 Kubernetes Communication Flow
+#🔗 Kubernetes Communication Flow
 Frontend Pod → Backend Service → Backend Pod
 
-🌟 Features:
+#🌟 Features:
 
-Add and delete meals
-REST API integration
-Fully containerized
-Kubernetes deployment ready
+Add and delete meals,
+REST API integration,
+Fully containerized,
+Kubernetes deployment ready,
 Clean modular architecture
 
-🔮 Future Enhancements:
+#🔮 Future Enhancements:
 
-Add MongoDB database
-User authentication (JWT)
-AI-based meal recommendations
+Add MongoDB database,
+User authentication (JWT),
+AI-based meal recommendations,
 CI/CD pipeline (GitHub Actions)
