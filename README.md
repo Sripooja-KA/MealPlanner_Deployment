@@ -1,127 +1,139 @@
-🍽 Meal Planner Application
+# 🍽 Meal Planner Application
 
-A full-stack Meal Planner web application built using React (Frontend) and Node.js + Express (Backend), containerized using Docker and deployable with Kubernetes.
+A **full-stack Meal Planner web application** built using **React (Frontend)** and **Node.js + Express (Backend)**, containerized using **Docker** and deployable with **Kubernetes**.
 
-This project demonstrates end-to-end development + deployment workflow, making it ideal for learning DevOps, Cloud, and Microservices architecture.
+This project demonstrates **end-to-end development + deployment workflow**, making it ideal for learning **DevOps, Cloud, and Microservices architecture**.
 
-📁 Project Structure
+---
+
+## 📁 Project Structure
 meal-planner-app/
 │
-├── frontend/                 # React-based UI
-│   ├── src/                 # Application logic
-│   ├── public/              # Static files
-│   ├── Dockerfile           # Frontend container config
-│   └── package.json         # Frontend dependencies
+├── frontend/ # React-based UI
+│ ├── src/ # Application logic
+│ ├── public/ # Static files
+│ ├── Dockerfile # Frontend container config
+│ └── package.json # Frontend dependencies
 │
-├── backend/                 # Node.js + Express API
-│   ├── src/                # Server & routes
-│   ├── Dockerfile          # Backend container config
-│   └── package.json        # Backend dependencies
+├── backend/ # Node.js + Express API
+│ ├── src/ # Server & routes
+│ ├── Dockerfile # Backend container config
+│ └── package.json # Backend dependencies
 │
-├── Below files                    # Kubernetes manifests
-│   ├── backend-deployment.yaml
-│   ├── backend-service.yaml
-│   ├── frontend-deployment.yaml
-│   ├── frontend-service.yaml
+├── k8s/ # Kubernetes manifests
+│ ├── backend-deployment.yaml
+│ ├── backend-service.yaml
+│ ├── frontend-deployment.yaml
+│ ├── frontend-service.yaml
 │
-├── docker-compose.yml      # Multi-container local setup
-└── README.md               # Project documentation
+├── docker-compose.yml # Multi-container local setup
+└── README.md # Project documentation
 
-⚙️ Tech Stack
-Frontend
-React
-Html, js
 
-Backend
-Node.js
-Express.js
+---
 
-DevOps & Deployment
-Docker
-Docker Compose
-Kubernetes
+## ⚙️ Tech Stack
 
-🔄 Application Workflow
-1️⃣ User Interaction
-User accesses the React frontend
-UI allows:
-Viewing meals
-Adding new meals
-Deleting meals
+### **Frontend**
+- React  
+- HTML, JavaScript  
 
-2️⃣ Frontend → Backend Communication
-Frontend sends API requests using Axios
-Example endpoints:
-GET /meals → Fetch meals
-POST /meals → Add meal
-DELETE /meals/:id → Delete meal
+### **Backend**
+- Node.js  
+- Express.js  
 
-3️⃣ Backend Processing
-Express server handles API requests
-Stores meal data (currently in-memory)
-Sends JSON responses back to frontend
+### **DevOps & Deployment**
+- Docker  
+- Docker Compose  
+- Kubernetes  
 
-4️⃣ Containerization (Docker)
-Each service runs in its own container:
-Frontend → Port 3000
-Backend → Port 5000
-Defined using:
-Dockerfile (per service)
-docker-compose.yml (multi-service setup)
+---
 
-5️⃣ Kubernetes Deployment
-Backend
-Deployed using:
-backend-deployment.yaml
-backend-service.yaml
-Internal service (ClusterIP) for communication
-Frontend
-Deployed using:
-frontend-deployment.yaml
-frontend-service.yaml
+## 🔄 Application Workflow
 
-AWS DynamoDB
-Table: MealPlanner
-Primary Key: id (String)
-Serverless NoSQL DB
-Amazon Elastic Kubernetes Service (EKS) → Run Kubernetes
-Amazon Elastic Container Registry (ECR) → Store Docker images
+### 1️⃣ User Interaction
+- User accesses the **React frontend**
+- UI allows:
+  - Viewing meals  
+  - Adding new meals  
+  - Deleting meals  
 
-Minikube (Local Cluster)
+---
+
+### 2️⃣ Frontend → Backend Communication
+- Frontend sends API requests using **Axios**
+
+**Endpoints:**
+- `GET /meals` → Fetch meals  
+- `POST /meals` → Add meal  
+- `DELETE /meals/:id` → Delete meal  
+
+---
+
+### 3️⃣ Backend Processing
+- Express server handles API requests  
+- Stores meal data (currently in-memory)  
+- Sends JSON responses back to frontend  
+
+---
+
+### 4️⃣ Containerization (Docker)
+- Each service runs in its own container:
+  - Frontend → Port 3000  
+  - Backend → Port 5000  
+
+**Defined using:**
+- `Dockerfile` (per service)  
+- `docker-compose.yml` (multi-service setup)  
+
+
+### 5️⃣ Kubernetes Deployment
+
+#### Backend
+- `backend-deployment.yaml`  
+- `backend-service.yaml`  
+- Uses **ClusterIP** for internal communication  
+
+#### Frontend
+- `frontend-deployment.yaml`  
+- `frontend-service.yaml`  
+- Exposed using **NodePort**
+  
+
+## ☁️ Cloud & Database Integration
+
+- **AWS DynamoDB**
+  - Table: `MealPlanner`
+  - Primary Key: `id (String)`
+  - Serverless NoSQL database  
+
+- **Amazon EKS (Elastic Kubernetes Service)**
+  - Runs Kubernetes in the cloud  
+
+- **Amazon ECR (Elastic Container Registry)**
+  - Stores Docker images  
+
+## ☸️ Minikube (Local Kubernetes)
+
+bash
+# Start Minikube
 minikube start
+
 # Enable Docker inside Minikube
 eval $(minikube docker-env)
 
-# Build images inside Minikube
+# Build images
 docker build -t meal-backend ./backend
 docker build -t meal-frontend ./frontend
 
 # Deploy to Kubernetes
 kubectl apply -f k8s/
 
-# Access frontend
+# Access application
 minikube service meal-frontend-service
 
-In Kubernetes:
-
+🔗 Kubernetes Communication Flow
 Frontend Pod → Backend Service → Backend Pod
-
-🚀 Getting Started
-🔹 Run Locally (Without Docker)
-Backend
-cd backend
-npm install
-npm start
-Frontend
-cd frontend
-npm install
-npm start
-
-🔹 Run with Docker
-docker-compose up --build
-
-🔹 Deploy to Kubernetes
-kubectl apply -f k8s/
 
 🌟 Features
 Add and delete meals
